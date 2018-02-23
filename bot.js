@@ -223,7 +223,7 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 					messageReaction.message.delete();
 					messageReaction.message.author.send("Your petition was deleted in " + messageReaction.message.guild.name + ":\n" + messageReaction.message.content);
 					if (messageReaction.message.guild.id == DLoNguildID) {
-						//messageReaction.message.guild.channels.find("name", "deleted-petitions").send(messageReaction.message.content)
+						messageReaction.message.guild.channels.find("name", "deleted-petitions").send(messageReaction.message.content);
 					}
 				}
 			}
