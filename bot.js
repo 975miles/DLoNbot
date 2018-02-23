@@ -197,58 +197,63 @@ bot.on("message", msg => {
 });
 
 bot.on("messageReactionAdd", (messageReaction,user) => {
-	console.log(user.username + " reacted on the message: [" + messageReaction.message.content + "] with " + messageReaction.emoji.name)
-	if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.petitionChannel && bal.config[messageReaction.message.guild.id].petitions) {
-		if (messageReaction.message.guild.channels.has(bal.config[messageReaction.message.guild.id].petition.voteChannel)) {
-			if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.voteRequirement && messageReaction.emoji.name == "✏") {
-				messageReaction.message.delete();
-				var timeSent = new Date(messageReaction.message.createdTimestamp);
-				if (messageReaction.message.guild.id == DLoNguildID) {
-					var toSend = new Discord.RichEmbed({description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,footer:{text:timeSent}})
+	try {
+		console.log(user.username + " reacted on the message: [" + messageReaction.message.content + "] with " + messageReaction.emoji.name)
+		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.petitionChannel && bal.config[messageReaction.message.guild.id].petitions) {
+			if (messageReaction.message.guild.channels.has(bal.config[messageReaction.message.guild.id].petition.voteChannel)) {
+				if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.voteRequirement && messageReaction.emoji.name == "✏") {
+					messageReaction.message.delete();
+					var timeSent = new Date(messageReaction.message.createdTimestamp);
+					if (messageReaction.message.guild.id == DLoNguildID) {
+						var toSend = new Discord.RichEmbed({description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,footer:{text:timeSent}})
+					}
+					else {
+						var toSend = new Discord.RichEmbed({title:messageReaction.message.author.username + "#" + messageReaction.message.author.discriminator,description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,thumbnail:{url:messageReaction.message.author.avatarURL},footer:{text:timeSent}});
+					}
+					additionalVoteReactions = [];
+					for (var currentEmoji of messageReaction.message.reactions) {
+						if (!(petitionReactions.includes(currentEmoji[1].emoji.name))) {
+							additionalVoteReactions.push(currentEmoji[1].emoji.name);
+						}
+					}
+					messageReaction.message.guild.channels.get(bal.config[messageReaction.message.guild.id].petition.voteChannel).send("New vote!", {embed:toSend});
+					messageReaction.message.author.send("Your petition in " + messageReaction.message.guild.name + " is now a vote:\n" + messageReaction.message.content);
 				}
-				else {
-					var toSend = new Discord.RichEmbed({title:messageReaction.message.author.username + "#" + messageReaction.message.author.discriminator,description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,thumbnail:{url:messageReaction.message.author.avatarURL},footer:{text:timeSent}});
-				}
-				additionalVoteReactions = [];
-				for (var currentEmoji of messageReaction.message.reactions) {
-					if (!(petitionReactions.includes(currentEmoji[1].emoji.name))) {
-						additionalVoteReactions.push(currentEmoji[1].emoji.name);
+				else if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.deleteRequirement && messageReaction.emoji.name == "🗑") {
+					messageReaction.message.delete();
+					messageReaction.message.author.send("Your petition was deleted in " + messageReaction.message.guild.name + ":\n" + messageReaction.message.content);
+					if (messageReaction.message.guild.id == DLoNguildID) {
+						//messageReaction.message.guild.channels.find("name", "deleted-petitions").send(messageReaction.message.content)
 					}
 				}
-				messageReaction.message.guild.channels.get(bal.config[messageReaction.message.guild.id].petition.voteChannel).send("New vote!", {embed:toSend});
-				messageReaction.message.author.send("Your petition in " + messageReaction.message.guild.name + " is now a vote:\n" + messageReaction.message.content);
-			}
-			else if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.deleteRequirement && messageReaction.emoji.name == "🗑") {
-				messageReaction.message.delete();
-				messageReaction.message.author.send("Your petition was deleted in " + messageReaction.message.guild.name + ":\n" + messageReaction.message.content);
-				if (messageReaction.message.guild.id == DLoNguildID) {
-					//messageReaction.message.guild.channels.find("name", "deleted-petitions").send(messageReaction.message.content)
-				}
-			}
-		}
-		else {
-			messageReaction.message.channel.send("I don\'t have access to the vote channel!");
-		}
-	}
-	if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DLoNguildID) {
-		if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
-			messageReaction.message.delete();
-			if (messageReaction.message.author.id == bot.user.id) {
-				var toSend = new Discord.RichEmbed({description:messageReaction.message.embeds[0].description});
 			}
 			else {
-				var toSend = new Discord.RichEmbed({description:messageReaction.message.content});
+				messageReaction.message.channel.send("I don\'t have access to the vote channel!");
 			}
-			var output = "<@&379355374286798848> Vote decided. Results:\n\n";
-			var foundReactions = [];
-			for (var reaction of messageReaction.message.reactions) {
-				if (!(foundReactions.includes(reaction[1].emoji.toString()))) {
-					foundReactions.push(reaction[1].emoji.toString());
-					output += reaction[1].emoji.toString() + ": " + (reaction[1].count - 1) + "\n";
-				}
-			}
-			messageReaction.message.guild.channels.find('id', "379354756503568385").send(output, {embed:toSend});
 		}
+		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DLoNguildID) {
+			if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
+				messageReaction.message.delete();
+				if (messageReaction.message.author.id == bot.user.id) {
+					var toSend = new Discord.RichEmbed({description:messageReaction.message.embeds[0].description});
+				}
+				else {
+					var toSend = new Discord.RichEmbed({description:messageReaction.message.content});
+				}
+				var output = "<@&379355374286798848> Vote decided. Results:\n\n";
+				var foundReactions = [];
+				for (var reaction of messageReaction.message.reactions) {
+					if (!(foundReactions.includes(reaction[1].emoji.toString()))) {
+						foundReactions.push(reaction[1].emoji.toString());
+						output += reaction[1].emoji.toString() + ": " + (reaction[1].count - 1) + "\n";
+					}
+				}
+				messageReaction.message.guild.channels.find('id', "379354756503568385").send(output, {embed:toSend});
+			}
+		}
+	}
+	catch (err) {
+		console.log(err);
 	}
 });
 
