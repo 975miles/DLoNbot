@@ -1,8 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client({autoReconnect: true});
-const readline = require('readline');
-var requireDir = require('require-dir');
-var fs=require('fs');
+const requireDir = require('require-dir');
+const fs=require('fs');
 
 var c = requireDir("./commands", {recurse: true});
 var functions = requireDir("./functions", {recurse: true});
