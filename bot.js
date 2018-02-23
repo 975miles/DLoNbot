@@ -10,7 +10,6 @@ var config = require("./config.json");
 
 var needsAdminResponse = "go get admin";
 var overriders = ["106068236000329728"];
-var prefixes = {"general":"/","currency":"C/","internet":"I/","translation":"T/","petitions":"P/"};
 
 var botAdminRoleName = "DLoN bot controller";
 var petitionReactions = ["✏","🗑"];
