@@ -210,8 +210,8 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 					else {
 						var toSend = new Discord.RichEmbed({title:messageReaction.message.author.username + "#" + messageReaction.message.author.discriminator,description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,thumbnail:{url:messageReaction.message.author.avatarURL},footer:{text:timeSent}});
 					}
-					if (msg.attachments.first() != undefined) {
-						toSend.attachFile(msg.attachments.first().url);
+					if (messageReaction.message.attachments.first() != undefined) {
+						toSend.attachFile(messageReaction.message.attachments.first().url);
 					}
 					additionalVoteReactions = [];
 					for (var currentEmoji of messageReaction.message.reactions) {
@@ -243,8 +243,8 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 				else {
 					var toSend = new Discord.RichEmbed({description:messageReaction.message.content});
 				}
-				if (msg.attachments.first() != undefined) {
-					toSend.attachFile(msg.attachments.first().url);
+				if (messageReaction.message.attachments.first() != undefined) {
+					toSend.attachFile(messageReaction.message.attachments.first().url);
 				}
 				var output = "<@&379355374286798848> Vote decided. Results:\n\n";
 				var foundReactions = [];
