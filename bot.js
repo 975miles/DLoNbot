@@ -232,7 +232,7 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 						if (messageReaction.message.attachments.first() != undefined) {
 							toSend.attachFile(messageReaction.message.attachments.first().url);
 						}
-						messageReaction.message.guild.channels.find("name", "deleted-petitions").send("=(", {embed:toSend});
+						messageReaction.message.guild.channels.find("name", "dead-petitions").send("=(", {embed:toSend});
 					}
 				}
 			}
