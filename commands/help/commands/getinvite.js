@@ -7,7 +7,8 @@ module.exports = {
 	"a":[],
 	"g":"e",
 	"f":function (msg,bot,args,bal) {
-		msg.channel.send(bot.generateInvite(["MANAGE_MESSAGES"]));
+		bot.generateInvite(["MANAGE_MESSAGES"])
+			.then(link => msg.channel.send(link));
 		return bal;
 	}
 }
