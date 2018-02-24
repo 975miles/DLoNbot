@@ -18,6 +18,7 @@ var additionalVoteReactions = [];
 var petitionChannelName = "petitions";
 var voteChannelName = "votes";
 var DLoNguildID = "379086861978697740";
+var newConfig = {"currency":true,"internet":true,"translation":true,"petitions":true,"language":"English","petition":{"langchannel":"","petitionChannel":"","voteChannel":"","voteRequirement":6,"deleteRequirement":6}};
 
 bot.on('ready', () => {
 	bot.user.setStatus("online");
@@ -25,13 +26,19 @@ bot.on('ready', () => {
 	console.log("Bot up.");
 	for (var i of bot.guilds) {
 		if (bal.config[i[1].id] == undefined) {
-			bal.config[i[1].id] = {"currency":true,"internet":true,"translation":true,"petitions":true,"language":"English","petition":{"langchannel":"","petitionChannel":"","voteChannel":"","voteRequirement":6,"deleteRequirement":6}};
+			bal.config[i[1].id] = newConfig;
 		}
 	}
 	for (var channel of bot.channels) {
 		if (channel[1].id == bal.config[channel[1].guild.id].petition.petitionChannel || channel[1].id == bal.config[channel[1].guild.id].petition.voteChannel) {
 			channel[1].fetchMessages();
 		}
+	}
+});
+
+bot.on("guildCreate", guild =>{
+	if (bal.config[guild.id] == undefined) {
+		bal.config[guild.id] = newConfig;
 	}
 });
 
@@ -50,11 +57,6 @@ bot.on("message", msg => {
 		try {
 			console.log(msg.author.username + " in #" + msg.channel.name + ", " + msg.guild.name + ": " + msg.content);
 			//msg.channel.send(readline.question(""));
-			for (var i of bot.guilds) {
-				if (bal.config[i[1].id] == undefined) {
-					bal.config[i[1].id] = {"currency":true,"internet":true,"translation":true,"petitions":true,"petition":{"petitionChannel":"","voteChannel":"","voteRequirement":6,"deleteRequirement":6}};
-				}
-			}
 			var command;
 			var args;
 			var module = true;
