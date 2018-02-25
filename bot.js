@@ -99,7 +99,7 @@ bot.on("message", msg => {
 					if (msg.attachments.first() != undefined) {
 						toSend.attachFile(msg.attachments.first().url);
 					}
-					if (overriders.includes(msg.author.id)) {
+					if (config.overriders.includes(msg.author.id)) {
 						toSend.setTitle(toSend.title + " (an overrider)");
 					}
 					for (var currentChannel of bot.channels) {
