@@ -17,7 +17,7 @@ var additionalVoteReactions = [];
 var petitionChannelName = "petitions";
 var voteChannelName = "votes";
 var UDNguildID = "417326960776183813";
-var newConfig = {"currency":true,"internet":true,"translation":true,"petitions":true,"language":"English","petition":{"langchannel":"","petitionChannel":"","voteChannel":"","voteRequirement":6,"deleteRequirement":6}};
+var newConfig = {"currency":true,"internet":true,"translation":true,"petitions":true,"time":true,"merit":true,"language":"English","petition":{"langchannel":"","petitionChannel":"","voteChannel":"","voteRequirement":6,"deleteRequirement":6}};
 
 bot.on('ready', () => {
 	bot.user.setStatus("online");
