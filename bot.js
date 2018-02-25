@@ -259,7 +259,7 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 						output += reaction[1].emoji.toString() + ": " + (reaction[1].count - 1) + "\n";
 					}
 				}
-				messageReaction.message.guild.channels.find('id', "379354756503568385").send(output, {embed:toSend});
+				messageReaction.message.guild.channels.find("name", "passed-votes-unorganized").send(output, {embed:toSend});
 			}
 		}
 	}
