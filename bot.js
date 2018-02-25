@@ -151,7 +151,7 @@ bot.on("message", msg => {
 				else if (module == "help" || (bal.config[msg.guild.id][module])) {
 					if (c[module].commands[command] != undefined) {
 						if (c[module].commands[command].g == "a") {
-							if (!(msg.member.hasPermission("ADMINISTRATOR") || overriders.includes(msg.author.id) || msg.member.roles.find("name", botAdminRoleName))) {
+							if (!(msg.member.hasPermission("ADMINISTRATOR") || config.overriders.includes(msg.author.id) || msg.member.roles.find("name", botAdminRoleName))) {
 								msg.channel.send("You don't have sufficient permissions to use this command!");
 								return;
 							}
