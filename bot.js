@@ -9,7 +9,6 @@ var bal = require("./bal.json");
 var config = require("./config.json");
 
 var needsAdminResponse = "go get admin";
-var overriders = ["106068236000329728"];
 
 var botAdminRoleName = "UDN bot controller";
 var petitionReactions = ["✏","🗑"];
