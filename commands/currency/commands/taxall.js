@@ -15,7 +15,7 @@ module.exports = {
 			msg.channel.send("Sorry, but I'm not going to let you put everyone into debt.");
 		}
 		else if (args[0] <= 0) {
-			msg.channel.send("You want to tax... a negatuve number... I have a feeling that's not how tax works.");
+			msg.channel.send("You want to tax... a negative number... I have a feeling that's not how tax works.");
 		}
 		else {
 			var prev = functions.checktot(msg.guild.id);
