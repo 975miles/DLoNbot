@@ -14,6 +14,7 @@ module.exports = {
 			}
 			else {
 				bal.nations[msg.author.id].info = args.join(" ");
+				msg.channel.send(bal.nations[msg.author.id].info + "\n\nGot it.");
 			}
 		}
 		else {
