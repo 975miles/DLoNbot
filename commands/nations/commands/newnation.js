@@ -13,7 +13,6 @@ module.exports = {
 				msg.channel.send("Who?")
 			}
 			args[0] = args[0].replace(/\D/g,'');
-			args[1] = Math.abs(Number(args[1]));
 			if (bot.users.has(args[0])) {
 				if (bal.nations[args[0]] == undefined) {
 					bal.nations[args[0]] = {"relations":{},"info":"This nation has no info yet."};
