@@ -8,7 +8,7 @@ module.exports = {
 	"a":["info"],
 	"g":"e",
 	"f":function (msg,bot,args,bal) {
-		if (bal.nations[msg.author.id] == undefined) {
+		if (bal.nations[msg.author.id] != undefined) {
 			if (args[0] == undefined) {
 				msg.channel.send("Wat?")
 			}
@@ -17,7 +17,7 @@ module.exports = {
 			}
 		}
 		else {
-			msg.channel.send("You aren't an overrider.");
+			msg.channel.send("You have no nation.");
 		}
         	return bal;
 	}
