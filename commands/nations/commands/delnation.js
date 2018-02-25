@@ -4,7 +4,7 @@ var config = require("../../../config.json");
 var c = requireDir("../../", {recurse: true});
 
 module.exports = {
-	"d":"Creates a nation for a leader. Only overriders can use this.",
+	"d":"Deletes a user's nation. Only overriders can use this.",
 	"a":["@user"],
 	"g":"a",
 	"f":function (msg,bot,args,bal) {
