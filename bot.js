@@ -45,7 +45,7 @@ bot.on("message", msg => {
 	for (var i in bal.config) {
 		for (var m in c) {
 			if (bal.config[i][m] == undefined) {
-				bal.config[i][m] == true;
+				bal.config[i][m] = true;
 			}
 		}
 	}
