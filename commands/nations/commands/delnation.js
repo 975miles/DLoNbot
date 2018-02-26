@@ -10,9 +10,8 @@ module.exports = {
 	"f":function (msg,bot,args,bal) {
 		if (config.overriders.includes(msg.author.id)) {
 			if (args[0] == undefined) {
-				msg.channel.send("Who?")
+				msg.channel.send("Which?")
 			}
-			args[0] = args[0].replace(/\D/g,'');
 			if (bal.nations[args[0]] != undefined) {
 				delete bal.nations[args[0]];
 				msg.channel.send("k");
