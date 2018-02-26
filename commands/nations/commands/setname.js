@@ -13,7 +13,7 @@ module.exports = {
 				msg.channel.send("Wat?")
 			}
 			else {
-				if (functions.realNation(args.join(" "))) {
+				if (bal.nations[args[0]] != undefined) {
 					msg.channel.send("that's already a nation, impersonator");
 				}
 				else {
