@@ -17,7 +17,7 @@ module.exports = {
 					msg.channel.send("that's already a nation, impersonator");
 				}
 				else {
-					var transferring = getNation(msg.author.id);
+					var transferring = functions.getNation(msg.author.id);
 					bal.nations[args.join(" ")] = bal.nations[transferring];
 					delete bal.nations[transferring];
 					msg.channel.send(bal.nations[msg.author.id].name + "\n\nGot it.");
