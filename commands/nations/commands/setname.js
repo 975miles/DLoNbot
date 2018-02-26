@@ -8,7 +8,7 @@ module.exports = {
 	"a":["name"],
 	"g":"e",
 	"f":function (msg,bot,args,bal) {
-		if (bal.nations[msg.author.id] != undefined) {
+		if (functions.hasNation(msg.author.id)) {
 			if (args[0] == undefined) {
 				msg.channel.send("Wat?")
 			}
@@ -17,7 +17,9 @@ module.exports = {
 					msg.channel.send("that's already a nation, impersonator");
 				}
 				else {
-					bal.nations[msg.author.id].name = args.join(" ");
+					var transferring = getNation(msg.author.id);
+					bal.nations[args.join(" ")] = bal.nations[transferring];
+					delete bal.nations[transferring];
 					msg.channel.send(bal.nations[msg.author.id].name + "\n\nGot it.");
 				}
 			}
