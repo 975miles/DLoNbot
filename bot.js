@@ -10,13 +10,13 @@ var config = require("./config.json");
 
 var needsAdminResponse = "go get admin";
 
-var botAdminRoleName = "UDN bot controller";
+var botAdminRoleName = "DNTO bot controller";
 var petitionReactions = ["✏","🗑"];
 var voteReactions = ["407583649798553612","407583666244419585","407583858423496716"];
 var additionalVoteReactions = [];
 var petitionChannelName = "petitions";
 var voteChannelName = "votes";
-var UDNguildID = "417326960776183813";
+var DNTOguildID = "417326960776183813";
 var newConfig = {"language":"English","petition":{"langchannel":"","petitionChannel":"","voteChannel":"","voteRequirement":6,"deleteRequirement":6}};
 
 bot.on('ready', () => {
@@ -215,7 +215,7 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 				if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.voteRequirement && messageReaction.emoji.name == "✏") {
 					messageReaction.message.delete();
 					var timeSent = new Date(messageReaction.message.createdTimestamp);
-					if (messageReaction.message.guild.id == UDNguildID) {
+					if (messageReaction.message.guild.id == DNTOguildID) {
 						var toSend = new Discord.RichEmbed({description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,footer:{text:timeSent}})
 					}
 					else {
@@ -236,7 +236,7 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 				else if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.deleteRequirement && messageReaction.emoji.name == "🗑") {
 					messageReaction.message.delete();
 					messageReaction.message.author.send("Your petition was deleted in " + messageReaction.message.guild.name + ":\n" + messageReaction.message.content);
-					if (messageReaction.message.guild.id == UDNguildID) {
+					if (messageReaction.message.guild.id == DNTOguildID) {
 						var toSend = new Discord.RichEmbed({description:messageReaction.message.content});
 						if (messageReaction.message.attachments.first() != undefined) {
 							toSend.attachFile(messageReaction.message.attachments.first().url);
@@ -249,7 +249,7 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 				messageReaction.message.channel.send("I don\'t have access to the vote channel!");
 			}
 		}
-		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == UDNguildID) {
+		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DNTOguildID) {
 			if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
 				messageReaction.message.delete();
 				if (messageReaction.message.author.id == bot.user.id) {
