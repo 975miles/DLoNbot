@@ -8,7 +8,7 @@ module.exports = {
 	"a":["info"],
 	"g":"e",
 	"f":function (msg,bot,args,bal) {
-		if (hasNation(msg.author.id)) {
+		if (functions.hasNation(msg.author.id)) {
 			if (args[0] == undefined) {
 				msg.channel.send("Wat?")
 			}
