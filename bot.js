@@ -75,8 +75,8 @@ bot.on("message", msg => {
 					}
 				}
 			}
-			if (msg.content.toLowerCase().includes("<3") || msg.content.toLowerCase().includes("❤")) {
-				msg.react("❤");
+			if (msg.content.toLowerCase().includes("🤔") || msg.content.toLowerCase().includes("think")) {
+				msg.react("🤔");
 			}
 			if (module == true) {
 				if (bal.config[msg.guild.id].internet && Object.keys(bal.internet.channels).includes(msg.channel.id)) {
