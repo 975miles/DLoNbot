@@ -7,6 +7,7 @@ var c = requireDir("./commands", {recurse: true});
 var functions = requireDir("./functions", {recurse: true});
 var bal = require("./bal.json");
 var config = require("./config.json");
+var reactions = require("./reactions.json");
 
 var needsAdminResponse = "go get admin";
 
@@ -75,13 +76,12 @@ bot.on("message", msg => {
 					}
 				}
 			}
-			if (msg.content.toLowerCase().includes("🤔") || msg.content.toLowerCase().includes("think")) {
-				msg.react("🤔");
-			}
-			if (msg.content.toLowerCase().includes("thonk")){
-				msg.react("418076177698127873");
-			}
-			if (module == true) {
+for (var emoji in reactions) {
+if (msg.content.toLowerCase().includes(emoji)) {
+msg.react(reactions[emoji]);
+}
+}
+if (module == true) {
 				if (bal.config[msg.guild.id].internet && Object.keys(bal.internet.channels).includes(msg.channel.id)) {
 					msg.delete();
 					if (bal.internet.links[msg.guild.id] == undefined) {
