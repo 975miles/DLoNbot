@@ -76,22 +76,12 @@ bot.on("message", msg => {
 					}
 				}
 			}
-<<<<<<< HEAD
-			if (msg.content.toLowerCase().includes("🤔") || msg.content.toLowerCase().includes("think")) {
-				msg.react("🤔");
-			}
-			if (msg.content.toLowerCase().includes("thonk")){
-				msg.react("418076177698127873");
-			}
-			if (module == true) {
-=======
 for (var emoji in reactions) {
 if (msg.content.toLowerCase().includes(emoji)) {
 msg.react(reactions[emoji]);
 }
 }
 if (module == true) {
->>>>>>> 5bac40cd98f0deda5075e03b6eb8c4685cfddb99
 				if (bal.config[msg.guild.id].internet && Object.keys(bal.internet.channels).includes(msg.channel.id)) {
 					msg.delete();
 					if (bal.internet.links[msg.guild.id] == undefined) {
