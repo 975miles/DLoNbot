@@ -1,10 +1,16 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client({autoReconnect: true});
+const bot = new Discord.Client({
+	autoReconnect: true
+});
 const requireDir = require('require-dir');
-const fs=require('fs');
+const fs = require('fs');
 
-var c = requireDir("./commands", {recurse: true});
-var functions = requireDir("./functions", {recurse: true});
+var c = requireDir("./commands", {
+	recurse: true
+});
+var functions = requireDir("./functions", {
+	recurse: true
+});
 var bal = require("./bal.json");
 var config = require("./config.json");
 var reactions = require("./reactions.json");
@@ -12,13 +18,22 @@ var reactions = require("./reactions.json");
 var needsAdminResponse = "go get admin";
 
 var botAdminRoleName = "DNTO bot controller";
-var petitionReactions = ["✏","🗑"];
-var voteReactions = ["417376041586393088","417376041573679104","417376041544318976"];
+var petitionReactions = ["✏", "🗑"];
+var voteReactions = ["417376041586393088", "417376041573679104", "417376041544318976"];
 var additionalVoteReactions = [];
 var petitionChannelName = "petitions";
 var voteChannelName = "votes";
 var DNTOguildID = "417326960776183813";
-var newConfig = {"language":"English","petition":{"langchannel":"","petitionChannel":"","voteChannel":"","voteRequirement":6,"deleteRequirement":6}};
+var newConfig = {
+	"language": "English",
+	"petition": {
+		"langchannel": "",
+		"petitionChannel": "",
+		"voteChannel": "",
+		"voteRequirement": 6,
+		"deleteRequirement": 6
+	}
+};
 
 bot.on('ready', () => {
 	bot.user.setStatus("online");
@@ -36,7 +51,7 @@ bot.on('ready', () => {
 	}
 });
 
-bot.on("guildCreate", guild =>{
+bot.on("guildCreate", guild => {
 	if (bal.config[guild.id] == undefined) {
 		bal.config[guild.id] = newConfig;
 	}
@@ -53,8 +68,7 @@ bot.on("message", msg => {
 	if (msg.author.bot) {
 		if (msg.channel.type != "text") {
 			return;
-		}
-		else {
+		} else {
 			if (msg.channel.id != bal.config[msg.guild.id].petition.voteChannel) {
 				return;
 			}
@@ -76,18 +90,17 @@ bot.on("message", msg => {
 					}
 				}
 			}
-for (var emoji in reactions) {
-if (msg.content.toLowerCase().includes(emoji)) {
-msg.react(reactions[emoji]);
-}
-}
-if (module == true) {
+			for (var emoji in reactions) {
+				if (msg.content.toLowerCase().includes(emoji)) {
+					msg.react(reactions[emoji]);
+				}
+			}
+			if (module == true) {
 				if (bal.config[msg.guild.id].internet && Object.keys(bal.internet.channels).includes(msg.channel.id)) {
 					msg.delete();
 					if (bal.internet.links[msg.guild.id] == undefined) {
 						var guildLink = "https://discord.gg/7eYSR9n";
-					}
-					else {
+					} else {
 						var guildLink = bal.internet.links[msg.guild.id];
 					}
 					if (bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].chatLock.locked && bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].chatLock.chatChannel != msg.channel.id && !(overriders.includes(msg.author.id))) return;
@@ -95,7 +108,24 @@ if (module == true) {
 						msg.reply("you're banned from this website!");
 						return;
 					}
-					var toSend = new Discord.RichEmbed({title:msg.author.username + "#" + msg.author.discriminator,description:msg.content,color:msg.member.highestRole.color,url:"https://discord.gg/7eYSR9n",thumbnail:{url:msg.author.avatarURL},author:{name:msg.guild.name + " [#" + msg.channel.name + "]",icon:msg.guild.iconURL,url:guildLink},footer:{text:"Site: " + bal.internet.channels[msg.channel.id],icon:bot.user.avatarURL}});
+					var toSend = new Discord.RichEmbed({
+						title: msg.author.username + "#" + msg.author.discriminator,
+						description: msg.content,
+						color: msg.member.highestRole.color,
+						url: "https://discord.gg/7eYSR9n",
+						thumbnail: {
+							url: msg.author.avatarURL
+						},
+						author: {
+							name: msg.guild.name + " [#" + msg.channel.name + "]",
+							icon: msg.guild.iconURL,
+							url: guildLink
+						},
+						footer: {
+							text: "Site: " + bal.internet.channels[msg.channel.id],
+							icon: bot.user.avatarURL
+						}
+					});
 					if (bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].hidden) {
 						toSend.setFooter("Site address hidden!", bot.user.avatarURL)
 					}
@@ -108,30 +138,29 @@ if (module == true) {
 					for (var currentChannel of bot.channels) {
 						if (bal.internet.channels[currentChannel[1].id] == bal.internet.channels[msg.channel.id]) {
 							currentChannel[1].startTyping();
-							currentChannel[1].send({embed:toSend});
+							currentChannel[1].send({
+								embed: toSend
+							});
 							currentChannel[1].stopTyping();
 						}
 					}
-				}
-				else if (msg.channel.id == bal.config[msg.guild.id].petition.petitionChannel && bal.config[msg.guild.id].petitions) {
-					petitionReactions.forEach(function(element){
+				} else if (msg.channel.id == bal.config[msg.guild.id].petition.petitionChannel && bal.config[msg.guild.id].petitions) {
+					petitionReactions.forEach(function (element) {
 						msg.react(element);
 					});
-				}
-				else if (msg.channel.id == bal.config[msg.guild.id].petition.voteChannel && bal.config[msg.guild.id].petitions) {
+				} else if (msg.channel.id == bal.config[msg.guild.id].petition.voteChannel && bal.config[msg.guild.id].petitions) {
 					if (msg.author.id != bot.user.id) {
 						additionalVoteReactions = [];
 					}
-					voteReactions.forEach(function(element){
+					voteReactions.forEach(function (element) {
 						msg.react(element);
 					});
-					additionalVoteReactions.forEach(function(element){
+					additionalVoteReactions.forEach(function (element) {
 						msg.react(element);
 					});
 				}
 				return;
-			}
-			else {
+			} else {
 				if (command == "help" || command == "?") {
 					var output = "Here\'s a list of the commands for the **" + module + "** module.\n\n**Commands that everyone can use**:";
 					for (var com in c[module].commands) {
@@ -139,8 +168,7 @@ if (module == true) {
 							output += "\n`" + com;
 							if (c[module].commands[com].a.length > 0) {
 								output += " [" + c[module].commands[com].a.join("] [") + "]`";
-							}
-							else {
+							} else {
 								output += "`";
 							}
 							output += " : " + c[module].commands[com].d;
@@ -152,16 +180,14 @@ if (module == true) {
 							output += "\n`" + com;
 							if (c[module].commands[com].a.length > 0) {
 								output += " [" + c[module].commands[com].a.join("] [") + "]`";
-							}
-							else {
+							} else {
 								output += "`";
 							}
 							output += " : " + c[module].commands[com].d;
 						}
 					}
 					msg.channel.send(output);
-				}
-				else if (module == "help" || (bal.config[msg.guild.id][module])) {
+				} else if (module == "help" || (bal.config[msg.guild.id][module])) {
 					if (c[module].commands[command] != undefined) {
 						if (c[module].commands[command].g == "a") {
 							if (!(msg.member.hasPermission("ADMINISTRATOR") || config.overriders.includes(msg.author.id) || msg.member.roles.find("name", botAdminRoleName))) {
@@ -171,46 +197,65 @@ if (module == true) {
 						}
 						if (module == "currency") {
 							for (var i of bot.guilds) {
-							if (bal.currency[i[1].id] == undefined) {
-									bal.currency[i[1].id] = {"bank":{},"config":{"sym":"","prefixes.currency":"!","name":i[1].name}}
+								if (bal.currency[i[1].id] == undefined) {
+									bal.currency[i[1].id] = {
+										"bank": {},
+										"config": {
+											"sym": "",
+											"prefixes.currency": "!",
+											"name": i[1].name
+										}
+									}
 								}
 								for (var n of i[1].members) {
 									if (bal.currency[i[1].id].bank[n[1].id] == undefined && !n[1].user.bot) {
-										bal.currency[i[1].id].bank[n[1].id] = {"bal":0,"employing":{},"name":n[1].user.username};
+										bal.currency[i[1].id].bank[n[1].id] = {
+											"bal": 0,
+											"employing": {},
+											"name": n[1].user.username
+										};
 									}
 								}
 							}
 							bal.currency[msg.guild.id].name = msg.guild.name;
 							if (msg.member.nickname != null) {
 								bal.currency[msg.guild.id].bank[msg.author.id]["name"] = msg.member.nickname;
-							}
-							else {
+							} else {
 								bal.currency[msg.guild.id].bank[msg.author.id]["name"] = msg.author.username;
 							}
 						}
-						bal = c[module].commands[command].f(msg,bot,args,bal);
-						
-					}
-					else {
+						bal = c[module].commands[command].f(msg, bot, args, bal);
+
+					} else {
 						msg.channel.send("That\'s not a command...");
 					}
 				}
 			}
 			fs.writeFile('bal.json', JSON.stringify(bal));
-		}
-		catch (err) {
-			msg.channel.send("Something happened!", new Discord.RichEmbed({title:"Something happened!",description:"Something happened!",author:{name:"Something happened!"},image:{url:"https://cdn.windowsreport.com/wp-content/uploads/2016/02/something-happened.jpg"},footer:{text:"Something happened!"}}));
+		} catch (err) {
+			msg.channel.send("Something happened!", new Discord.RichEmbed({
+				title: "Something happened!",
+				description: "Something happened!",
+				author: {
+					name: "Something happened!"
+				},
+				image: {
+					url: "https://cdn.windowsreport.com/wp-content/uploads/2016/02/something-happened.jpg"
+				},
+				footer: {
+					text: "Something happened!"
+				}
+			}));
 			console.log(err);
 		}
-	}
-	else {
+	} else {
 		if (msg.author.id != "378877253754421250") {
 			msg.reply("This bot can only be used in servers!")
 		}
 	}
 });
 
-bot.on("messageReactionAdd", (messageReaction,user) => {
+bot.on("messageReactionAdd", (messageReaction, user) => {
 	try {
 		console.log(user.username + " reacted on the message: [" + messageReaction.message.content + "] with " + messageReaction.emoji.name)
 		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.petitionChannel && bal.config[messageReaction.message.guild.id].petitions) {
@@ -219,10 +264,25 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 					messageReaction.message.delete();
 					var timeSent = new Date(messageReaction.message.createdTimestamp);
 					if (messageReaction.message.guild.id == DNTOguildID) {
-						var toSend = new Discord.RichEmbed({description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,footer:{text:timeSent}})
-					}
-					else {
-						var toSend = new Discord.RichEmbed({title:messageReaction.message.author.username + "#" + messageReaction.message.author.discriminator,description:messageReaction.message.content,color:messageReaction.message.member.highestRole.color,thumbnail:{url:messageReaction.message.author.avatarURL},footer:{text:timeSent}});
+						var toSend = new Discord.RichEmbed({
+							description: messageReaction.message.content,
+							color: messageReaction.message.member.highestRole.color,
+							footer: {
+								text: timeSent
+							}
+						})
+					} else {
+						var toSend = new Discord.RichEmbed({
+							title: messageReaction.message.author.username + "#" + messageReaction.message.author.discriminator,
+							description: messageReaction.message.content,
+							color: messageReaction.message.member.highestRole.color,
+							thumbnail: {
+								url: messageReaction.message.author.avatarURL
+							},
+							footer: {
+								text: timeSent
+							}
+						});
 					}
 					if (messageReaction.message.attachments.first() != undefined) {
 						toSend.attachFile(messageReaction.message.attachments.first().url);
@@ -233,22 +293,26 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 							additionalVoteReactions.push(currentEmoji[1].emoji.name);
 						}
 					}
-					messageReaction.message.guild.channels.get(bal.config[messageReaction.message.guild.id].petition.voteChannel).send("New vote!", {embed:toSend});
+					messageReaction.message.guild.channels.get(bal.config[messageReaction.message.guild.id].petition.voteChannel).send("New vote!", {
+						embed: toSend
+					});
 					messageReaction.message.author.send("Your petition in " + messageReaction.message.guild.name + " is now a vote:\n" + messageReaction.message.content);
-				}
-				else if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.deleteRequirement && messageReaction.emoji.name == "🗑") {
+				} else if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.deleteRequirement && messageReaction.emoji.name == "🗑") {
 					messageReaction.message.delete();
 					messageReaction.message.author.send("Your petition was deleted in " + messageReaction.message.guild.name + ":\n" + messageReaction.message.content);
 					if (messageReaction.message.guild.id == DNTOguildID) {
-						var toSend = new Discord.RichEmbed({description:messageReaction.message.content});
+						var toSend = new Discord.RichEmbed({
+							description: messageReaction.message.content
+						});
 						if (messageReaction.message.attachments.first() != undefined) {
 							toSend.attachFile(messageReaction.message.attachments.first().url);
 						}
-						messageReaction.message.guild.channels.find("name", "dead-petitions").send("=(", {embed:toSend});
+						messageReaction.message.guild.channels.find("name", "dead-petitions").send("=(", {
+							embed: toSend
+						});
 					}
 				}
-			}
-			else {
+			} else {
 				messageReaction.message.channel.send("I don\'t have access to the vote channel!");
 			}
 		}
@@ -256,10 +320,13 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 			if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
 				messageReaction.message.delete();
 				if (messageReaction.message.author.id == bot.user.id) {
-					var toSend = new Discord.RichEmbed({description:messageReaction.message.embeds[0].description});
-				}
-				else {
-					var toSend = new Discord.RichEmbed({description:messageReaction.message.content});
+					var toSend = new Discord.RichEmbed({
+						description: messageReaction.message.embeds[0].description
+					});
+				} else {
+					var toSend = new Discord.RichEmbed({
+						description: messageReaction.message.content
+					});
 				}
 				if (messageReaction.message.attachments.first() != undefined) {
 					toSend.attachFile(messageReaction.message.attachments.first().url);
@@ -272,11 +339,12 @@ bot.on("messageReactionAdd", (messageReaction,user) => {
 						output += reaction[1].emoji.toString() + ": " + (reaction[1].count - 1) + "\n";
 					}
 				}
-				messageReaction.message.guild.channels.find("name", "passed-votes-unorganized").send(output, {embed:toSend});
+				messageReaction.message.guild.channels.find("name", "passed-votes-unorganized").send(output, {
+					embed: toSend
+				});
 			}
 		}
-	}
-	catch (err) {
+	} catch (err) {
 		console.log(err);
 	}
 });
