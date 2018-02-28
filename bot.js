@@ -78,7 +78,7 @@ bot.on("message", msg => {
 			if (msg.content.toLowerCase().includes("🤔") || msg.content.toLowerCase().includes("think")) {
 				msg.react("🤔");
 			}
-			if (msg.content.toLowerCase().includes(":thonk:") || msg.content.toLowerCase().includes("thonk") || msg.content.toLowerCase().includes("<:thonk:418076177698127873>")){
+			if (msg.content.toLowerCase().includes("thonk")){
 				msg.react("418076177698127873");
 			}
 			if (module == true) {
