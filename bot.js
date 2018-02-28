@@ -78,6 +78,9 @@ bot.on("message", msg => {
 			if (msg.content.toLowerCase().includes("🤔") || msg.content.toLowerCase().includes("think")) {
 				msg.react("🤔");
 			}
+			if (msg.content.toLowerCase().includes(":thonk:") || msg.content.toLowerCase().includes("thonk") || msg.content.toLowerCase().includes("<:thonk:418076177698127873>")){
+				msg.react("418076177698127873");
+			}
 			if (module == true) {
 				if (bal.config[msg.guild.id].internet && Object.keys(bal.internet.channels).includes(msg.channel.id)) {
 					msg.delete();
