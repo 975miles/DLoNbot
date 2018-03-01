@@ -42,7 +42,7 @@ var newMining = {
 		"silver":0,
 		"bronze":0,
 		"stone":0
-	}
+	},
 	"money":0,
 	"shiftsCompleted":0,
 	"nextShift":0
