@@ -232,7 +232,7 @@ bot.on("message", msg => {
 										"bank": {},
 										"config": {
 											"sym": "",
-											"prefixes.currency": "!",
+											"mineValue": 0;
 											"name": i[1].name
 										}
 									}
