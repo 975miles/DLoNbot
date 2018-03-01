@@ -25,7 +25,7 @@ module.exports = {
 			bal.mining[msg.author.id].nextShift = Date.now() + (cooldown * 1000)
 			msg.channel.send(output);
 		} else {
-			msg.channel.send("You completed a shift recently. Please wait **" + (bal.mining[msg.author.id].nextShift - Date.now()) / 1000 + "** seconds to mine again.");
+			msg.channel.send("You completed a shift recently. Please wait **" + Math.round((bal.mining[msg.author.id].nextShift - Date.now()) / 1000) + "** seconds to mine again.");
 		}
 		return bal;
 	}
