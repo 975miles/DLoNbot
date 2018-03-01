@@ -259,8 +259,9 @@ bot.on("message", msg => {
 									bal.mining[user[1].id] = newMining;
 									console.log(bal.mining[user[1].id])
 								}
-								console.log(newMining)
+								
 							}
+							console.log(newMining)
 						}
 						bal = c[module].commands[command].f(msg, bot, args, bal);
 
