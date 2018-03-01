@@ -5,7 +5,7 @@ var c = requireDir("../../", {recurse: true});
 module.exports = {
 	"d":"Sets my nickname.",
 	"a":["nick"],
-	"g":"a",
+	"g":"o",
 	"f":function (msg,bot,args,bal) {
 		if (args[0] != undefined) {
 			msg.guild.me.setNickname(args.join(" "));
