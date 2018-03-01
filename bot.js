@@ -232,7 +232,7 @@ bot.on("message", msg => {
 										"bank": {},
 										"config": {
 											"sym": "",
-											"mineValue": 0;
+											"mineValue": 0,
 											"name": i[1].name
 										}
 									}
