@@ -6,7 +6,7 @@ module.exports = {
 	"a":[],
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
-		var output == "Your balances:";
+		var output = "Your balances:";
 		for (var mineral in bal.mining[msg.author.id].minerals) {
 			output += "\n" + mineral + ": `" + bal.mining[msg.author.id].minerals[mineral] + "`";
 		}
