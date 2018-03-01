@@ -199,11 +199,28 @@ bot.on("message", msg => {
 							output += " : " + c[module].commands[com].d;
 						}
 					}
+					output += "\n\n**Commands that only set overriders can use**:";
+					for (var com in c[module].commands) {
+						if (c[module].commands[com].g == "o") {
+							output += "\n`" + com;
+							if (c[module].commands[com].a.length > 0) {
+								output += " [" + c[module].commands[com].a.join("] [") + "]`";
+							} else {
+								output += "`";
+							}
+							output += " : " + c[module].commands[com].d;
+						}
+					}
 					msg.channel.send(output);
 				} else if (module == "help" || (bal.config[msg.guild.id][module])) {
 					if (c[module].commands[command] != undefined) {
 						if (c[module].commands[command].g == "a") {
 							if (!(msg.member.hasPermission("ADMINISTRATOR") || config.overriders.includes(msg.author.id) || msg.member.roles.find("name", botAdminRoleName))) {
+								msg.channel.send("You don't have sufficient permissions to use this command!");
+								return;
+							}
+						} else if (c[module].commands[command].g == "o") {
+							if (!(config.overriders.includes(msg.author.id))) {
 								msg.channel.send("You don't have sufficient permissions to use this command!");
 								return;
 							}
