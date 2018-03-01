@@ -34,19 +34,6 @@ var newConfig = {
 		"deleteRequirement": 6
 	}
 };
-var newMining = {
-	"minerals":{
-		"diamond":0,
-		"platinum":0,
-		"gold":0,
-		"silver":0,
-		"bronze":0,
-		"stone":0
-	},
-	"money":0,
-	"shiftsCompleted":0,
-	"nextShift":0
-};
 
 bot.on('ready', () => {
 	bot.user.setStatus("online");
@@ -255,9 +242,19 @@ bot.on("message", msg => {
 							}
 						} else if (module == "mining") {
 							if (bal.mining[msg.author.id] == undefined) {
-								bal.mining[msg.author.id] = newMining;
-								console.log(bal.mining[msg.author.id]);
-								console.log(newMining);
+								bal.mining[msg.author.id] = {
+									"minerals":{
+										"diamond":0,
+										"platinum":0,
+										"gold":0,
+										"silver":0,
+										"bronze":0,
+										"stone":0
+									},
+									"money":0,
+									"shiftsCompleted":0,
+									"nextShift":0
+								};
 							}
 						}
 						bal = c[module].commands[command].f(msg, bot, args, bal);
