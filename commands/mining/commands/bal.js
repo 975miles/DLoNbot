@@ -6,12 +6,20 @@ module.exports = {
 	"a":[],
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
-		var output = "Your balances:";
-		for (var mineral in bal.mining[msg.author.id].minerals) {
-			output += "\n" + mineral + ": `" + bal.mining[msg.author.id].minerals[mineral] + "`";
+		if (args[0] == undefined) {
+			args[0] = msg.author.id;
 		}
-		output += "\n\nmoney: " + "`" + bal.mining[msg.author.id].money + "`";
-		msg.channel.send(output);
+		args[0] = args[0].replace(/\D/g,'');
+		if (bal.mining[args[0]] == undefined) {
+			msg.channel.send("Please @mention the user.");
+		} else {
+			var output = "Balances:";
+			for (var mineral in bal.mining[args[0]].minerals) {
+				output += "\n" + mineral + ": `" + bal.mining[args[0]].minerals[mineral] + "`";
+			}
+			output += "\n\nmoney: " + "`" + bal.mining[args[0]].money + "`";
+			msg.channel.send(output);
+		}
 		return bal;
 	}
 }
