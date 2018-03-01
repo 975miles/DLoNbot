@@ -6,7 +6,7 @@ var c = requireDir("../../", {recurse: true});
 module.exports = {
 	"d":"Deletes a user's nation. Only overriders can use this.",
 	"a":["@user"],
-	"g":"a",
+	"g":"o",
 	"f":function (msg,bot,args,bal) {
 		if (args[0] == undefined) {
 			msg.channel.send("Which?")
