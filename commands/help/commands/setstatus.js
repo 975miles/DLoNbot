@@ -9,5 +9,6 @@ module.exports = {
 	"f":function (msg,bot,args,bal) {
 		bot.user.setStatus(args[0]);
 		msg.channel.send("k");
+		return bal;
 	}
 }
