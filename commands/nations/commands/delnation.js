@@ -8,20 +8,15 @@ module.exports = {
 	"a":["@user"],
 	"g":"a",
 	"f":function (msg,bot,args,bal) {
-		if (config.overriders.includes(msg.author.id)) {
-			if (args[0] == undefined) {
-				msg.channel.send("Which?")
-			}
-			if (bal.nations[args[0]] != undefined) {
-				delete bal.nations[args[0]];
-				msg.channel.send("k");
-			}
-			else {
-				msg.channel.send("Do they even have a nation?");
-			}
+		if (args[0] == undefined) {
+			msg.channel.send("Which?")
+		}
+		if (bal.nations[args[0]] != undefined) {
+			delete bal.nations[args[0]];
+			msg.channel.send("k");
 		}
 		else {
-			msg.channel.send("You aren't an overrider.");
+			msg.channel.send("Do they even have a nation?");
 		}
         	return bal;
 	}
