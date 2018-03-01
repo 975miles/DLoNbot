@@ -18,7 +18,7 @@ module.exports = {
 		if (bal.mining[msg.author.id].nextShift < Date.now()) {
 			var output = "Shift completed! Here's what you got:\n";
 			for (var mineral in bal.mining[msg.author.id].minerals) {
-				var adding = Math.random() * (amounts.mineral[1] - amounts.mineral[0]) + amounts.mineral[0];
+				var adding = Math.random() * (amounts[mineral][1] - amounts[mineral][0]) + amounts[mineral][0];
 				bal.mining[msg.author.id].minerals[mineral] += adding
 				output += "\n" + mineral + ": `" + adding + "`";
 			}
