@@ -11,7 +11,7 @@ module.exports = {
 		}
 		args[0] = args[0].replace(/\D/g,'');
 		if (bal.mining[args[0]] == undefined) {
-			msg.channel.send("Please @mention the user.");
+			msg.channel.send("Please @mention the user. If you did, this person has never mined.");
 		} else {
 			var output = "Balances:";
 			for (var mineral in bal.mining[args[0]].minerals) {
