@@ -15,5 +15,6 @@ module.exports = {
 		else {
 			msg.channel.send("Set it to... what?");
 		}
+		return bal;
 	}
 }
