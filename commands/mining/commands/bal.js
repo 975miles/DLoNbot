@@ -10,7 +10,7 @@ module.exports = {
 		for (var mineral in bal.mining[msg.author.id].minerals) {
 			output += "\n" + mineral + ": `" + bal.mining[msg.author.id].minerals[mineral] + "`";
 		}
-		output += "\n\nmoney: " + "`" + bal.mining[msg.author.id].money;
+		output += "\n\nmoney: " + "`" + bal.mining[msg.author.id].money + "`";
 		msg.channel.send(output);
 		return bal;
 	}
