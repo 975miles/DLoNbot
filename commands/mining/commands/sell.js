@@ -3,11 +3,11 @@ var functions = requireDir("../../../functions", {recurse: true});
 var cooldown = 600;
 var values = {
 	"diamond":[0,0.01]100,
-	"platinum":[0,0.02]200,
-	"gold":[0.1,1],
-	"silver":[0.5,20],
-	"bronze":[5,50],
-	"stone":[100,500]
+	"platinum":50,
+	"gold":1,
+	"silver":0.05,
+	"bronze":0.02,
+	"stone":0.001
 };
 
 module.exports = {
