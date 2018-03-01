@@ -254,14 +254,10 @@ bot.on("message", msg => {
 								bal.currency[msg.guild.id].bank[msg.author.id]["name"] = msg.author.username;
 							}
 						} else if (module == "mining") {
-							for (var user of bot.users) {
-								if (bal.mining[user[1].id] == undefined) {
-									bal.mining[user[1].id] = newMining;
-									console.log(bal.mining[user[1].id])
-								}
-								
+							if (bal.mining[msg.author.id] == undefined) {
+								bal.mining[msg.author.id] = newMining;
+								console.log(bal.mining[user[1].id])
 							}
-							console.log(newMining)
 						}
 						bal = c[module].commands[command].f(msg, bot, args, bal);
 
