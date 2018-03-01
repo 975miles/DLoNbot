@@ -267,7 +267,7 @@ bot.on("message", msg => {
 					}
 				}
 			}
-			fs.writeFile('bal.json', JSON.stringify(bal));
+			fs.writeFile('bal.json', JSON.stringify(bal), null, 4);
 		} catch (err) {
 			msg.channel.send("Something happened!", new Discord.RichEmbed({
 				title: "Something happened!",
