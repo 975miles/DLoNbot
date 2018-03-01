@@ -7,7 +7,7 @@ module.exports = {
 	"a":["game"],
 	"g":"o",
 	"f":function (msg,bot,args,bal) {
-		bot.user.setActivity(args[0]);
+		bot.user.setActivity(args.join(" "));
 		msg.channel.send("k");
 	}
 }
