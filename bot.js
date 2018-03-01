@@ -258,6 +258,7 @@ bot.on("message", msg => {
 								if (bal.mining[user[1].id] == undefined) {
 									bal.mining[user[1].id] = newMining;
 								}
+								console.log(bal.mining[user[1].id])
 							}
 						}
 						bal = c[module].commands[command].f(msg, bot, args, bal);
