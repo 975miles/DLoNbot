@@ -2,7 +2,7 @@ var requireDir = require('require-dir');
 var functions = requireDir("../../../functions", {recurse: true});
 
 module.exports = {
-	"d":"Mine to get minerals! Can be used once per" + cooldown + "seconds.",
+	"d":"Shows your balance.",
 	"a":[],
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
