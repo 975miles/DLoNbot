@@ -6,28 +6,23 @@ var c = requireDir("../../", {recurse: true});
 module.exports = {
 	"d":"Creates a nation for a leader. Only overriders can use this.",
 	"a":["@user"],
-	"g":"a",
+	"g":"o",
 	"f":function (msg,bot,args,bal) {
-		if (config.overriders.includes(msg.author.id)) {
-			if (args[0] == undefined) {
-				msg.channel.send("Who?")
-			}
-			args[0] = args[0].replace(/\D/g,'');
-			if (bot.users.has(args[0])) {
-				if (bal.nations[args[0]] == undefined) {
-					bal.nations[args[0]] = {"owner":args[0],"relations":{},"info":"This nation has no info yet."};
-					msg.channel.send("k");
-				}
-				else {
-					msg.channel.send("Don't they already have a nation?");
-				}
+		if (args[0] == undefined) {
+			msg.channel.send("Who?")
+		}
+		args[0] = args[0].replace(/\D/g,'');
+		if (bot.users.has(args[0])) {
+			if (bal.nations[args[0]] == undefined) {
+				bal.nations[args[0]] = {"owner":args[0],"relations":{},"info":"This nation has no info yet."};
+				msg.channel.send("k");
 			}
 			else {
-				msg.channel.send("Not a person.");
+				msg.channel.send("Don't they already have a nation?");
 			}
 		}
 		else {
-			msg.channel.send("You aren't an overrider.");
+			msg.channel.send("Not a person.");
 		}
         	return bal;
 	}
