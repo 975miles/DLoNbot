@@ -2,7 +2,7 @@ var requireDir = require('require-dir');
 var functions = requireDir("../../../functions", {recurse: true});
 var cooldown = 600;
 var values = {
-	"diamond":[0,0.01]100,
+	"diamond":100,
 	"platinum":50,
 	"gold":1,
 	"silver":0.05,
