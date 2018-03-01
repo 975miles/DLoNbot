@@ -17,7 +17,7 @@ module.exports = {
 				bal.mining[msg.author.id].money = 0;
 			} else if (!isNaN(Number(args[0]))) {
 				args[0] = Number(args[0]);
-				if (args[0] < bal.mining[msg.author.id].money) {
+				if (args[0] > bal.mining[msg.author.id].money) {
 					msg.channel.send("You don't have enough money.");
 				} else {
 					var getting = args[0] * bal.currency[msg.guild.id].config.mineValue;
