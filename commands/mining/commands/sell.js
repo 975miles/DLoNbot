@@ -22,9 +22,9 @@ module.exports = {
 			bal.mining[msg.author.id].minerals[mineral] = 0;
 			bal.mining[msg.author.id].money += adding;
 			total += adding;
-			output += "\n" + mineral + ": `" + adding + "`";
+			output += "\n" + mineral + ": `£" + Math.round(adding * 100) / 100 + "`";
 		}
-		output += "\n\ntotal: `" + total + "`";
+		output += "\n\ntotal: `£" + Math.round(total * 100) / 100 + "`";
 		msg.channel.send(output);
 		return bal;
 	}
