@@ -7,7 +7,7 @@ module.exports = {
 	"a":["amount / all"],
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
-		if (bal.currency[msg.guild.id].config.mineValue != undefined && bal.currency[msg.guild.id].config.mineValue) {
+		if (bal.currency[msg.guild.id].config.mineValue == undefined || bal.currency[msg.guild.id].config.mineValue <= 0) {
 			msg.channel.send("This server\'s currency value is too low!");
 		} else {
 			if (args[0] == "all") {
