@@ -44,7 +44,8 @@ var newMining = {
 		"stone":0
 	}
 	"money":0,
-	"shiftsCompleted":0
+	"shiftsCompleted":0,
+	"nextShift":0
 };
 
 bot.on('ready', () => {
