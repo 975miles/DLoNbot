@@ -238,7 +238,7 @@ bot.on("message", msg => {
 							}
 						} else if (module == "mining") {
 							for (var user of bot.users) {
-								if (bal.mining[user[1].id] == undefined]) {
+								if (bal.mining[user[1].id] == undefined) {
 									bal.mining[user[1].id] = newMining;
 								}
 							}
