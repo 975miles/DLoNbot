@@ -8,9 +8,9 @@ module.exports = {
 	"g":"a",
 	"f":function (msg,bot,args,bal) {
 		if (args[0] != undefined) {
-            msg.guild.me.setNickname(args.join(" "));
-            msg.channel.send("Are you sure this is legal?");
-        }
-        return bal;
+			msg.guild.me.setNickname(args.join(" "));
+			msg.channel.send("Are you sure this is legal?");
+		}
+		return bal;
 	}
 }
