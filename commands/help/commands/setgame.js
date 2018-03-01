@@ -9,5 +9,6 @@ module.exports = {
 	"f":function (msg,bot,args,bal) {
 		bot.user.setActivity(args.join(" "));
 		msg.channel.send("k");
+		return bal;
 	}
 }
