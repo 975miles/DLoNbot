@@ -7,5 +7,6 @@ module.exports = {
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
 		//oof template
+		return bal;
 	}
 }
