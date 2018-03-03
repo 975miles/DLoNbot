@@ -4,7 +4,7 @@ var fs=require('fs');
 
 module.exports = {
 	"d":"Pays all wages from all people.",
-	"a":["@user"],
+	"a":[],
 	"g":"a",
 	"f":function (msg, bot, args, bal) {
 		var output = "";
