@@ -9,7 +9,7 @@ module.exports = {
 	"f":function (msg, bot, args, bal) {
 		var output = "";
 		for (i in bal.currency[msg.guild.id].bank) {
-			output +=  bal.currency[msg.guild.id].bank[i].name + " apys: \n";
+			output +=  bal.currency[msg.guild.id].bank[i].name + " pays: \n";
 			for (n in bal.currency[msg.guild.id].bank[i].employing) {
 				if (bal.currency[msg.guild.id].bank[i].bal >= bal.currency[msg.guild.id].bank[i].employing[n]) {
 					output += "  " + bal.currency[msg.guild.id].bank[n].name + ": " + bal.currency[msg.guild.id].bank[i].employing[n] + "\n";
