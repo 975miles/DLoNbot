@@ -15,7 +15,7 @@ module.exports = {
 		} else {
 			var output = "Balances:";
 			for (var mineral in bal.mining[args[0]].minerals) {
-				output += "\n" + mineral + ": `" + bal.mining[args[0]].minerals[mineral] + "g`";
+				output += "\n" + mineral + ": `" + Math.round(bal.mining[args[0]].minerals[mineral] * 100000) / 100000 + "g`";
 			}
 			output += "\n\nmoney: " + "`£" + Math.round(bal.mining[args[0]].money * 100) / 100 + "`";
 			msg.channel.send(output);
