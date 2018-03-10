@@ -20,7 +20,7 @@ module.exports = {
 			for (var mineral in bal.mining[msg.author.id].minerals) {
 				var adding = Math.random() * (amounts[mineral][1] - amounts[mineral][0]) + amounts[mineral][0];
 				bal.mining[msg.author.id].minerals[mineral] += adding
-				output += "\n" + mineral + ": `" + adding + "g`";
+				output += "\n" + mineral + ": `" + + Math.round(adding * 100000) / 100000  + "g`";
 			}
 			bal.mining[msg.author.id].nextShift = Date.now() + (cooldown * 1000);
 			bal.mining[msg.author.id].shiftsCompleted++;
