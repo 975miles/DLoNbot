@@ -13,7 +13,7 @@ module.exports = {
 		args[1] = Math.abs(Number(args[1]));
 		
 		if (bal.mining[args[0]] == undefined) {
-			msg.channel.send("Put an @ before the username of the recipient. If you did, this member has not registered yet. Ask them to send a message in this channel.");
+			msg.channel.send("Put an @ before the username of the recipient. If you did, this member has not registered yet. Ask them to mine.");
 		}
 		else if (isNaN(args[1])) {
 			msg.channel.send("You have to pay the recipient some amount.");
