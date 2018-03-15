@@ -28,8 +28,8 @@ module.exports = {
 			}
 			output += bal.internet.sites[i].name + ", owned by " + username + ", which is in " + serverAmounts[i] + " channels. Chat lock status: " + bal.internet.sites[i].chatLock.locked + "\n";
 		}
-		fs.writeFile('../../../all.txt', output);
-		msg.channel.send("Here they are.", {file: '../../../all.txt'});
+		fs.writeFile('all.txt', output);
+		msg.channel.send("Here they are.", {file: 'all.txt'});
 		return bal;
 	}
 }
