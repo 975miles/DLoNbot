@@ -118,7 +118,7 @@ bot.on("message", msg => {
 						url: "https://discord.gg/7eYSR9n",
 						thumbnail: {
 							url: msg.author.avatarURL
-						},
+						}/*,
 						author: {
 							name: msg.guild.name + " [#" + msg.channel.name + "]",
 							icon: msg.guild.iconURL,
@@ -127,8 +127,10 @@ bot.on("message", msg => {
 						footer: {
 							text: "Site: " + bal.internet.channels[msg.channel.id],
 							icon: bot.user.avatarURL
-						}
+						}*/
 					});
+					toSend.setAuthor(msg.guild.name + " [#" + msg.channel.name + "]",msg.guild.iconURL);
+					toSend.setFooter("Site: " + bal.internet.channels[msg.channel.id],bot.user.avatarURL)
 					if (bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].hidden) {
 						toSend.setFooter("Site address hidden!", bot.user.avatarURL)
 					}
