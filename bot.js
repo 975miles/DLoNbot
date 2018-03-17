@@ -90,6 +90,9 @@ bot.on("message", msg => {
 					}
 				}
 			}
+			if (message.isMemberMentioned(bot.user)) {
+				msg.channel.send("Whoeth dareth pingeth me-eth?");
+			}
 			for (var emoji in reactions) {
 				if (msg.content.toLowerCase().includes(emoji)) {
 					msg.react(reactions[emoji]);
