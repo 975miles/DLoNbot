@@ -106,7 +106,7 @@ bot.on("message", msg => {
 					} else {
 						var guildLink = bal.internet.links[msg.guild.id];
 					}
-					if (bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].chatLock.locked && bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].chatLock.chatChannel != msg.channel.id && !(config.overriders.includes(msg.author.id))) return;
+					if (bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].chatLock.locked && bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].chatLock.chatChannel != msg.channel.id && !(config.overriders.includes(msg.author.id) || functions.getSiteOwner(bal.internet.channels[msg.channel.id]) == msg.author.id)) return;
 					if (bal.internet.sites[functions.getSiteOwner(bal.internet.channels[msg.channel.id])].banned.includes(msg.author.id) && !(overriders.includes(msg.author.id))) {
 						msg.reply("you're banned from this website!");
 						return;
