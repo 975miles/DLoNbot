@@ -140,7 +140,7 @@ bot.on("message", msg => {
 					if (config.overriders.includes(msg.author.id)) {
 						toSend.setTitle(toSend.title + " (an overrider)");
 					}
-					if (functions.getSiteOwner(bal.internet.channels[msg.channel.id]) == msg.author.id)) {
+					if (functions.getSiteOwner(bal.internet.channels[msg.channel.id]) == msg.author.id) {
 						toSend.setTitle(toSend.title + " [site owner]");
 					}
 					for (var currentChannel of bot.channels) {
