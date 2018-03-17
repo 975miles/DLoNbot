@@ -90,7 +90,7 @@ bot.on("message", msg => {
 					}
 				}
 			}
-			if (message.isMemberMentioned(bot.user)) {
+			if (msg.isMemberMentioned(bot.user)) {
 				msg.channel.send("Whoeth dareth pingeth me-eth?");
 			}
 			for (var emoji in reactions) {
