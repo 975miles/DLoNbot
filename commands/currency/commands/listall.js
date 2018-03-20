@@ -10,7 +10,7 @@ module.exports = {
 		var output = "";
 		var lsit = [];
 		for (i in bal.currency[msg.guild.id].bank){
-			lsit.push([bal.currency[msg.guild.id].bank[i].bal,bal.currency[msg.guild.id].bank[i].name]);
+			lsit.push([Math.round(bal.currency[msg.guild.id].bank[i].bal * 100) / 100,bal.currency[msg.guild.id].bank[i].name]);
 		}
 		lsit.sort(function(a,b){
 			return a[0] - b[0];
