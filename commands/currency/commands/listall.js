@@ -17,7 +17,7 @@ module.exports = {
 		});
 		lsit.reverse();
 		for (var i = 0; i < lsit.length; i++){
-			output = output + (i+1) + ": Balance of " + lsit[i][1][0] + ": **" + bal.currency[msg.guild.id].config.sym + lsit[i][0] + "**\n";
+			output = output + (i+1) + ": Balance of " + lsit[i][1] + ": **" + bal.currency[msg.guild.id].config.sym + lsit[i][0] + "**\n";
 		}
 		if (output.length > 1995) {
 			fs.writeFile('all.txt', output);
