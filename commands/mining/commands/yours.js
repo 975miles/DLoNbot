@@ -1,5 +1,5 @@
 module.exports = {
-	"d":"Mine to get minerals! Can be used once per " + cooldown + " seconds.",
+	"d":"No.",
 	"a":[],
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
