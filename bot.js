@@ -298,6 +298,7 @@ bot.on("message", msg => {
 
 bot.on("messageReactionAdd", (messageReaction, user) => {
 	try {
+		messageReaction.message.react(messageReaction.emoji.identifier);
 		console.log(user.username + " reacted on the message: [" + messageReaction.message.content + "] with " + messageReaction.emoji.name)
 		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.petitionChannel && bal.config[messageReaction.message.guild.id].petitions) {
 			if (messageReaction.message.guild.channels.has(bal.config[messageReaction.message.guild.id].petition.voteChannel)) {
