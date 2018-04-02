@@ -359,8 +359,7 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 			}
 		}
 		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DNTOguildID) {
-			console.log(messageReaction.message.member.roles)
-			if (!messageReaction.message.member.roles.exists("name", "Leader")) {messageReaction.remove(user);return}
+			if (!messageReaction.message.guild.members.get(user.id).roles.exists("name", "Leader")) {messageReaction.remove(user);return}
 			if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
 				messageReaction.message.delete();
 				if (messageReaction.message.author.id == bot.user.id) {
