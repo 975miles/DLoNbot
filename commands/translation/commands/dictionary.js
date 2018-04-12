@@ -21,7 +21,7 @@ module.exports = {
 				}
 			}
 			else {
-				words.push(["Oh no..."["there are none."]]);
+				words.push(["Oh no...",["there are none."]]);
 			}
 			words.sort();
 			var words2 = "";
