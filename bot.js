@@ -23,7 +23,6 @@ var voteReactions = ["417376041586393088", "417376041573679104", "41737604154431
 var additionalVoteReactions = [];
 var petitionChannelName = "petitions";
 var voteChannelName = "votes";
-var DNTOguildID = "417326960776183813";
 var newConfig = {
 	"language": "English",
 	"petition": {
@@ -305,7 +304,7 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 				if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.voteRequirement && messageReaction.emoji.name == "✏") {
 					messageReaction.message.delete();
 					var timeSent = new Date(messageReaction.message.createdTimestamp);
-					if (messageReaction.message.guild.id == DNTOguildID) {
+					if (messageReaction.message.guild.id == config.serverID) {
 						var toSend = new Discord.RichEmbed({
 							description: messageReaction.message.content,
 							color: messageReaction.message.member.highestRole.color,
@@ -342,7 +341,7 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 				} else if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.deleteRequirement && messageReaction.emoji.name == "🗑") {
 					messageReaction.message.delete();
 					messageReaction.message.author.send("Your petition was deleted in " + messageReaction.message.guild.name + ":\n" + messageReaction.message.content);
-					if (messageReaction.message.guild.id == DNTOguildID) {
+					if (messageReaction.message.guild.id == config.serverID) {
 						var toSend = new Discord.RichEmbed({
 							description: messageReaction.message.content
 						});
@@ -358,7 +357,7 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 				messageReaction.message.channel.send("I don\'t have access to the vote channel!");
 			}
 		}
-		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DNTOguildID) {
+		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == config.serverID) {
 			if (user.id == bot.user.id) return;
 			if (!messageReaction.message.guild.members.get(user.id).roles.exists("name", "Leader")) {
 				messageReaction.remove(user.id);
