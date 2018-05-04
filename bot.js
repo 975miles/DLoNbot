@@ -23,7 +23,6 @@ var voteReactions = ["417376041586393088", "417376041573679104", "41737604154431
 var additionalVoteReactions = [];
 var petitionChannelName = "petitions";
 var voteChannelName = "votes";
-var DNTOguildID = "417326960776183813";
 var newConfig = {
 	"language": "English",
 	"petition": {
@@ -251,18 +250,14 @@ bot.on("message", msg => {
 						} else if (module == "mining") {
 							if (bal.mining[msg.author.id] == undefined) {
 								bal.mining[msg.author.id] = {
-									"minerals":{
-										"diamond":0,
-										"platinum":0,
-										"gold":0,
-										"silver":0,
-										"bronze":0,
-										"stone":0
-									},
+									"minerals":{},
 									"money":0,
 									"shiftsCompleted":0,
 									"nextShift":0
 								};
+								config.monthOrder.forEach(function(element) {
+									bal.mining[msg.author.id].minerals[element] = 0;
+								});
 							}
 						}
 						bal = c[module].commands[command].f(msg, bot, args, bal);
@@ -305,27 +300,17 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 				if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.voteRequirement && messageReaction.emoji.name == "✏") {
 					messageReaction.message.delete();
 					var timeSent = new Date(messageReaction.message.createdTimestamp);
-					if (messageReaction.message.guild.id == DNTOguildID) {
-						var toSend = new Discord.RichEmbed({
-							description: messageReaction.message.content,
-							color: messageReaction.message.member.highestRole.color,
-							footer: {
-								text: timeSent
-							}
-						})
-					} else {
-						var toSend = new Discord.RichEmbed({
-							title: messageReaction.message.author.username + "#" + messageReaction.message.author.discriminator,
-							description: messageReaction.message.content,
-							color: messageReaction.message.member.highestRole.color,
-							thumbnail: {
-								url: messageReaction.message.author.avatarURL
-							},
-							footer: {
-								text: timeSent
-							}
-						});
-					}
+					var toSend = new Discord.RichEmbed({
+						title: messageReaction.message.author.username + "#" + messageReaction.message.author.discriminator,
+						description: messageReaction.message.content,
+						color: messageReaction.message.member.highestRole.color,
+						thumbnail: {
+							url: messageReaction.message.author.avatarURL
+						},
+						footer: {
+							text: timeSent
+						}
+					});
 					if (messageReaction.message.attachments.first() != undefined) {
 						toSend.attachFile(messageReaction.message.attachments.first().url);
 					}
@@ -342,53 +327,9 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 				} else if (messageReaction.count >= bal.config[messageReaction.message.guild.id].petition.deleteRequirement && messageReaction.emoji.name == "🗑") {
 					messageReaction.message.delete();
 					messageReaction.message.author.send("Your petition was deleted in " + messageReaction.message.guild.name + ":\n" + messageReaction.message.content);
-					if (messageReaction.message.guild.id == DNTOguildID) {
-						var toSend = new Discord.RichEmbed({
-							description: messageReaction.message.content
-						});
-						if (messageReaction.message.attachments.first() != undefined) {
-							toSend.attachFile(messageReaction.message.attachments.first().url);
-						}
-						messageReaction.message.guild.channels.find("name", "dead-petitions").send("=(", {
-							embed: toSend
-						});
-					}
 				}
 			} else {
 				messageReaction.message.channel.send("I don\'t have access to the vote channel!");
-			}
-		}
-		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DNTOguildID) {
-			if (user.id == bot.user.id) return;
-			if (!messageReaction.message.guild.members.get(user.id).roles.exists("name", "Leader")) {
-				messageReaction.remove(user.id);
-				return;
-			}
-			if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
-				messageReaction.message.delete();
-				if (messageReaction.message.author.id == bot.user.id) {
-					var toSend = new Discord.RichEmbed({
-						description: messageReaction.message.embeds[0].description
-					});
-				} else {
-					var toSend = new Discord.RichEmbed({
-						description: messageReaction.message.content
-					});
-				}
-				if (messageReaction.message.attachments.first() != undefined) {
-					toSend.attachFile(messageReaction.message.attachments.first().url);
-				}
-				var output = "<@&379355374286798848> Vote decided. Results:\n\n";
-				var foundReactions = [];
-				for (var reaction of messageReaction.message.reactions) {
-					if (!(foundReactions.includes(reaction[1].emoji.toString()))) {
-						foundReactions.push(reaction[1].emoji.toString());
-						output += reaction[1].emoji.toString() + ": " + (reaction[1].count - 1) + "\n";
-					}
-				}
-				messageReaction.message.guild.channels.find("name", "passed-votes-unorganized").send(output, {
-					embed: toSend
-				});
 			}
 		}
 	} catch (err) {

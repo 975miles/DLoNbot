@@ -1,1 +1,21 @@
-{"config":{},"currency":{},"internet":{"sites":{},"channels":{},"links":{}},"translation":{"Absolutely nobody":{"name":"English","alphabet":["A","B","C"],"words":{"Hi":"Hello"},"editors":[]}},"nations":{},"mining":{}}
+{
+    "config": {},
+    "currency": {},
+    "internet": {
+        "sites": {},
+        "channels": {},
+        "links": {}
+    },
+    "translation": {
+        "Absolutely nobody": {
+            "name": "English",
+            "alphabet": ["A", "B", "C"],
+            "words": {
+                "Hi": "Hello"
+            },
+            "editors": []
+        }
+    },
+    "nations": {},
+    "mining": {}
+}

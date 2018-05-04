@@ -1,14 +1,7 @@
 var requireDir = require('require-dir');
 var functions = requireDir("../../../functions", {recurse: true});
-var cooldown = 600;
-var amounts = {
-	"diamond":[0,0.01],
-	"platinum":[0,0.02],
-	"gold":[0.1,1],
-	"silver":[0.5,20],
-	"bronze":[5,50],
-	"stone":[100,500]
-};
+var config = require("../../../config.json");
+cooldown = 600;
 
 module.exports = {
 	"d":"Mine to get minerals! Can be used once per " + cooldown + " seconds.",
@@ -18,9 +11,12 @@ module.exports = {
 		if (bal.mining[msg.author.id].nextShift < Date.now()) {
 			var output = "Shift completed! Here's what you got:\n";
 			for (var mineral in bal.mining[msg.author.id].minerals) {
-				var adding = Math.random() * (amounts[mineral][1] - amounts[mineral][0]) + amounts[mineral][0];
-				bal.mining[msg.author.id].minerals[mineral] += adding
-				output += "\n" + mineral + ": `" + + Math.round(adding * 100000) / 100000  + "g`";
+				var adding = Math.random() * (config.months[mineral].yields.max -config.months[mineral].yields.min) + config.months[mineral].yields.min;
+				if (functions.time(Date.now()).monthName == mineral) {
+					adding *= 5;
+				}
+				bal.mining[msg.author.id].minerals[mineral] += adding;
+				output += "\n" + (functions.time(Date.now()).monthName == mineral ? mineral + " (5x month bonus)" : mineral) + ": `" + Math.round(adding * 100000) / 100000  + "g`";
 			}
 			bal.mining[msg.author.id].nextShift = Date.now() + (cooldown * 1000);
 			bal.mining[msg.author.id].shiftsCompleted++;
