@@ -9,8 +9,9 @@ module.exports = {
 	"g":"o",
 	"f":function (msg,bot,args,bal) {
 		if (args[0] == undefined) {
-			msg.channel.send("Which?")
+			msg.channel.send("Whose?")
 		}
+		args[0] = args[0].replace(/\D/g,'');
 		if (bal.nations[args[0]]) {
 			delete bal.nations[args[0]];
 			msg.channel.send("k");
