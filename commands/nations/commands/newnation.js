@@ -14,7 +14,7 @@ module.exports = {
 		args[0] = args[0].replace(/\D/g,'');
 		if (bot.users.has(args[0])) {
 			if (bal.nations[args[0]] == undefined) {
-				bal.nations[args[0]] = {"owner":args[0],"relations":{},"info":"This nation has no info yet."};
+				bal.nations[args[0]] = {"name":msg.guild.name,"relations":{},"invite":"Ask the owner to set an invite."};
 				msg.channel.send("k");
 			}
 			else {
@@ -24,6 +24,6 @@ module.exports = {
 		else {
 			msg.channel.send("Not a person.");
 		}
-        	return bal;
+        return bal;
 	}
 }

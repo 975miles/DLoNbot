@@ -11,13 +11,13 @@ module.exports = {
 		if (args[0] == undefined) {
 			msg.channel.send("Which?")
 		}
-		if (bal.nations[args[0]] != undefined) {
+		if (bal.nations[args[0]]) {
 			delete bal.nations[args[0]];
 			msg.channel.send("k");
 		}
 		else {
 			msg.channel.send("Do they even have a nation?");
 		}
-        	return bal;
+        return bal;
 	}
 }

@@ -8,13 +8,13 @@ module.exports = {
 	"a":["info"],
 	"g":"e",
 	"f":function (msg,bot,args,bal) {
-		if (functions.hasNation(msg.author.id)) {
+		if (bal.nations(msg.author.id)) {
 			if (args[0] == undefined) {
 				msg.channel.send("Wat?")
 			}
 			else {
-				bal.nations[functions.getNation(msg.author.id)].info = args.join(" ");
-				msg.channel.send(bal.nations[msg.author.id].info + "\n\nGot it.");
+				bal.nations[functions.getNation(msg.author.id)].invite = args.join(" ");
+				msg.channel.send("Got it.");
 			}
 		}
 		else {
