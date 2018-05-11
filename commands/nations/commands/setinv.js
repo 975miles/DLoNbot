@@ -13,7 +13,7 @@ module.exports = {
 				msg.channel.send("Wat?")
 			}
 			else {
-				bal.nations[functions.getNation(msg.author.id)].invite = args.join(" ");
+				bal.nations[msg.author.id].invite = args.join(" ");
 				msg.channel.send("Got it.");
 			}
 		}
