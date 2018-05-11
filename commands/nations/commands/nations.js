@@ -10,7 +10,7 @@ module.exports = {
 	"f":function (msg,bot,args,bal) {
 		var output = "";
 		for (var nation in bal.nations) {
-			output += bal.nations[nation].name + "(";
+			output += bal.nations[nation].name + " (";
 			if (bot.users.has(nation)) {
 				output += "owned by " + bot.users.get(nation).tag;
 			} else {
