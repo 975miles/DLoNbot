@@ -13,15 +13,8 @@ module.exports = {
 				msg.channel.send("Wat?")
 			}
 			else {
-				if (bal.nations[args[0]] != undefined) {
-					msg.channel.send("that's already a nation, impersonator");
-				}
-				else {
-					var transferring = functions.getNation(msg.author.id);
-					bal.nations[args.join(" ")] = bal.nations[transferring];
-					delete bal.nations[transferring];
-					msg.channel.send(bal.nations[msg.author.id].name + "\n\nGot it.");
-				}
+				bal.nations[msg.author.id].name = args[0];
+				msg.channel.send(bal.nations[msg.author.id].name + "\n\nGot it.");
 			}
 		}
 		else {
