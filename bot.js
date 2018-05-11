@@ -17,7 +17,7 @@ var reactions = require("./reactions.json");
 
 var needsAdminResponse = "go get admin";
 
-var botAdminRoleName = "DNTO bot controller";
+var botAdminRoleName = "Mynezia bot controller";
 var petitionReactions = ["✏", "🗑"];
 var voteReactions = ["417376041586393088", "417376041573679104", "417376041544318976"];
 var additionalVoteReactions = [];
