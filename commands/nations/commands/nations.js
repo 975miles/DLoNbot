@@ -10,8 +10,13 @@ module.exports = {
 	"f":function (msg,bot,args,bal) {
 		var output = "";
 		for (var nation of bal.nations) {
-			output += bal.nations[nation].name + 
-			"(" + (bot.users.has(nation) ? ("owned by " + bot.users.get(nation).tag) : "user left community, nation pending deletion") + ")" +
+			output += bal.nations[nation].name + "(";
+			if (bot.users.has(nation)) {
+				output += "owned by " + bot.users.get(nation).tag;
+			} else {
+				output += "user left community, nation pending deletion";
+			}
+			output += ")" +
 			" : " + bal.nations[nation].invite + "\n";
 		}
 		msg.channel.send(output);
