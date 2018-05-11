@@ -4,7 +4,7 @@ var functions = requireDir("../../../functions", {recurse: true});
 module.exports = {
 	"d":"Tells you the Mynaze time. Format: Y/M/D H:M:S",
 	"a":[],
-	"g":"a",
+	"g":"e",
 	"f":function (msg, bot, args, bal) {
 		var time = functions.time(Date.now());
 		msg.channel.send("```" + 
