@@ -5,7 +5,7 @@ var config = require("../../../config.json");
 module.exports = {
 	"d":"Sarcasm",
 	"a":[],
-	"g":"o",
+	"g":"e",
 	"f":function (msg,bot,args,bal) {
 		msg.delete();
 		for (var sarcasm = 0; sarcasm < 5; sarcasm++) {
