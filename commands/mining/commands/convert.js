@@ -22,7 +22,7 @@ module.exports = {
 				} else {
 					var getting = args[0] * bal.currency[msg.guild.id].config.mineValue;
 					bal.currency[msg.guild.id].bank[msg.author.id].bal += getting;
-					msg.channel.send("You converted " + Math.round(args[0] * 100) / 100 + " into **" + Math.round(getting * 100) / 100 + "**.");
+					msg.channel.send("You converted £" + Math.round(args[0] * 100) / 100 + " into **" + bal.currency[msg.guild.id].config.sym + Math.round(getting * 100) / 100 + "**.");
 					bal.mining[msg.author.id].money -= args[0];
 				}
 			} else {
