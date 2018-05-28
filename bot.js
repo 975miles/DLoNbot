@@ -353,38 +353,41 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 			} else {
 				messageReaction.message.channel.send("I don\'t have access to the vote channel!");
 			}
-			if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DNTOguildID) {
-				if (user.id == bot.user.id) return;
-				if (!messageReaction.message.guild.members.get(user.id).roles.exists("name", "Leader")) {
-					messageReaction.remove(user.id);
-					return;
-				}
-				if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
-					messageReaction.message.delete();
-					if (messageReaction.message.author.id == bot.user.id) {
-						var toSend = new Discord.RichEmbed({
-							description: messageReaction.message.embeds[0].description
-						});
-					} else {
-						var toSend = new Discord.RichEmbed({
-							description: messageReaction.message.content
-						});
-					}
-					if (messageReaction.message.attachments.first() != undefined) {
-						toSend.attachFile(messageReaction.message.attachments.first().url);
-					}
-					var output = "<@&379355374286798848> Vote decided. Results:\n\n";
-					var foundReactions = [];
-					for (var reaction of messageReaction.message.reactions) {
-						if (!(foundReactions.includes(reaction[1].emoji.toString()))) {
-							foundReactions.push(reaction[1].emoji.toString());
-							output += reaction[1].emoji.toString() + ": " + (reaction[1].count - 1) + "\n";
-						}
-					}
-					messageReaction.message.guild.channels.find("name", "vote-results").send(output, {
-						embed: toSend
+				
+		}
+		console.log((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7))
+		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DNTOguildID) {
+			if (user.id == bot.user.id) return;
+			/*if (!messageReaction.message.guild.members.get(user.id).roles.exists("name", "Leader")) {
+				messageReaction.remove(user.id);
+				return;
+			}*/
+			if ((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7)) {
+				messageReaction.message.delete();
+				if (messageReaction.message.author.id == bot.user.id) {
+					var toSend = new Discord.RichEmbed({
+						description: messageReaction.message.embeds[0].description
+					});
+				} else {
+					s
+					var toSend = new Discord.RichEmbed({
+						description: messageReaction.message.content
 					});
 				}
+				if (messageReaction.message.attachments.first() != undefined) {
+					toSend.attachFile(messageReaction.message.attachments.first().url);
+				}
+				var output = "<@&379355374286798848> Vote decided. Results:\n\n";
+				var foundReactions = [];
+				for (var reaction of messageReaction.message.reactions) {
+					if (!(foundReactions.includes(reaction[1].emoji.toString()))) {
+						foundReactions.push(reaction[1].emoji.toString());
+						output += reaction[1].emoji.toString() + ": " + (reaction[1].count - 1) + "\n";
+					}
+				}
+				messageReaction.message.guild.channels.find("name", "vote-results").send(output, {
+					embed: toSend
+				});
 			}
 		}
 	} catch (err) {
