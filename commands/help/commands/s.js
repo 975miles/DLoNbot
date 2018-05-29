@@ -8,7 +8,7 @@ module.exports = {
 	"g":"e",
 	"f":function (msg,bot,args,bal) {
 		msg.delete();
-		msg.channel.send(msg.author.username.toUpperCase() "WAS BEING SARCASTIC. DO NOT TAKE WHAT THEY SAID SERIOUSLY.")
+		msg.channel.send(msg.author.username.toUpperCase() + "WAS BEING SARCASTIC. DO NOT TAKE WHAT THEY SAID SERIOUSLY.")
 		return bal;
 	}
 }
