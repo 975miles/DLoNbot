@@ -19,7 +19,8 @@ module.exports = {
 		for (var i = 0; i < lsit.length; i++){
 			output += (i+1) + ": Balance of " + lsit[i][1] + ": **£" + lsit[i][0] + "**\n";
 		}
-		msg.channel.send(output);
+		fs.writeFile('all.txt', output);
+		msg.channel.send("Here it is, I guess.", {file: 'all.txt'});
 		return bal;
 	}
 }
