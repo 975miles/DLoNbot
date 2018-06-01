@@ -10,7 +10,7 @@ module.exports = {
 		var output = "";
 		var lsit = [];
 		for (i in bal.mining[msg.guild.id]){
-			lsit.push([Math.round(bal.mining[msg.guild.id].money * 100) / 100, (bot.users.has(i) ? bot.users.get(i).username : i));
+			lsit.push([Math.round(bal.mining[msg.guild.id].money * 100) / 100, (bot.users.has(i) ? bot.users.get(i).username : i)]);
 		}
 		lsit.sort(function(a,b){
 			return a[0] - b[0];
