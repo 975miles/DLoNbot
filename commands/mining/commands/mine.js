@@ -9,7 +9,7 @@ module.exports = {
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
 		if (bal.mining[msg.author.id].nextShift < Date.now()) {
-			var output = "Shift completed! Here's what you got:\n";
+			var output = "Shift **" + bal.mining[msg.author.id].shiftsCompleted + "** completed! Here's what you got:\n";
 			for (var mineral in bal.mining[msg.author.id].minerals) {
 				var adding = Math.random() * (config.months[mineral].yields.max -config.months[mineral].yields.min) + config.months[mineral].yields.min;
 				if (functions.time(Date.now()).monthName == mineral) {
