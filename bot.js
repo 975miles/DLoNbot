@@ -45,7 +45,7 @@ bot.on('ready', () => {
 		}
 	}
 	for (var channel of bot.channels) {
-		if (channel[1].type == "text" && channel[1].id == bal.config[channel[1].guild.id].petition.petitionChannel || channel[1].id == bal.config[channel[1].guild.id].petition.voteChannel) {
+		if (channel[1].type == "text" && channel[1].id == bal.config[channel[1].guild.id].petition.petitionChannel || channel[1].type == "text" && channel[1].id == bal.config[channel[1].guild.id].petition.voteChannel) {
 			channel[1].fetchMessages();
 		}
 	}
