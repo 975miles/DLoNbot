@@ -112,7 +112,7 @@ bot.on("message", msg => {
 						return;
 					}
 					var toSend = new Discord.RichEmbed({
-						title: msg.author.username + "#" + msg.author.discriminator,
+						title: msg.author.username + "#" + msg.author.discriminator + "<@" + msg.author.id + ">",
 						description: msg.content,
 						color: msg.member.highestRole.color,
 						url: "https://discord.gg/7eYSR9n",
