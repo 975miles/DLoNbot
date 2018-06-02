@@ -355,7 +355,6 @@ bot.on("messageReactionAdd", (messageReaction, user) => {
 			}
 				
 		}
-		console.log((messageReaction.emoji.name == "against" || messageReaction.emoji.name == "favour") && (messageReaction.count > (messageReaction.message.channel.members.keyArray().length - 1) / 2 || messageReaction.count > 7))
 		if (messageReaction.message.channel.id == bal.config[messageReaction.message.guild.id].petition.voteChannel && messageReaction.message.guild.id == DNTOguildID) {
 			if (user.id == bot.user.id) return;
 			/*if (!messageReaction.message.guild.members.get(user.id).roles.exists("name", "Leader")) {
