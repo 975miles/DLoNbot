@@ -16,11 +16,11 @@ module.exports = {
 			return a[0] - b[0];
 		});
 		lsit.reverse();
+		lsit.slice(0,9)
 		for (var i = 0; i < lsit.length; i++){
 			output += (i+1) + ": Balance of " + lsit[i][1] + ": **£" + lsit[i][0] + "** (" + lsit[i][2] + " shifts)\n";
 		}
-		fs.writeFile('all.txt', output);
-		msg.channel.send("Here it is, I guess.", {file: 'all.txt'});
+		msg.channel.send(output);
 		return bal;
 	}
 }
