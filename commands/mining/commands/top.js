@@ -16,8 +16,7 @@ module.exports = {
 			return a[0] - b[0];
 		});
 		lsit.reverse();
-		lsit.slice(0,10)
-		console.log(lsit)
+		lsit = lsit.slice(0,10);
 		for (var i = 0; i < lsit.length; i++){
 			output += (i+1) + ": Balance of " + lsit[i][1] + ": **£" + lsit[i][0] + "** (" + lsit[i][2] + " shifts)\n";
 		}
