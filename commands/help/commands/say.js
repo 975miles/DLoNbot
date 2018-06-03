@@ -5,7 +5,7 @@ var config = require("../../../config.json");
 module.exports = {
 	"d":"Sarcasm",
 	"a":[],
-	"g":"e",
+	"g":"o",
 	"f":function (msg,bot,args,bal) {
 		msg.delete();
 		msg.channel.send(args.join(" "));
