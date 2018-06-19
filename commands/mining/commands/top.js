@@ -18,7 +18,7 @@ module.exports = {
 		lsit.reverse();
 		lsit = lsit.slice(0,10);
 		for (var i = 0; i < lsit.length; i++){
-			output += (i+1) + ": Balance of " + lsit[i][1] + ": **£" + lsit[i][0] + "** (" + lsit[i][2] + " shifts)\n";
+			output += (i+1) + ": Balance of " + lsit[i][1] + ": £" + lsit[i][0] + " (" + lsit[i][2] + " shifts)\n";
 		}
 		msg.channel.send(output);
 		return bal;
