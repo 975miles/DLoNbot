@@ -11,9 +11,9 @@ module.exports = {
 			if (bal.config.blacklisted.includes(args[m])) {
 				bal.config.blacklisted.splice(bal.config.blacklisted.indexOf(args[m]));
 				if (bot.users.has(args[m])) {
-					msg.channel.send(bot.users.get(args[m]).toString() + " is now blacklisted.");
+					msg.channel.send(bot.users.get(args[m]).toString() + " is no longer blacklisted.");
 				} else {
-					msg.channel.send("User with ID `" + args[m] + "` is now blacklisted.");
+					msg.channel.send("User with ID `" + args[m] + "` is no longer blacklisted.");
 				}
 			} else {
 				if (bot.users.has(args[m])) {
