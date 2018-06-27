@@ -294,7 +294,7 @@ bot.on("message", msg => {
 });
 
 bot.on("messageReactionAdd", (messageReaction, user) => {
-	if (bal.config.blacklisted.includes(msg.author.id)) return;
+	if (bal.config.blacklisted.includes(messageReaction.message.author.id)) return;
 	try {
 		messageReaction.message.react(messageReaction.emoji.identifier);
 		console.log(user.username + " reacted on the message: [" + messageReaction.message.content + "] with " + messageReaction.emoji.name)
