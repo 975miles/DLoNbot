@@ -8,7 +8,7 @@ module.exports = {
 	"g":"o",
 	"f":function (msg,bot,args,bal) {
 		for (var m = 0; m < args.length; m++) {
-			if (bal.config.blacklisted.includes(args[m])) {
+			if (!bal.config.blacklisted.includes(args[m])) {
 				bal.config.blacklisted.append(args[m]);
 				if (bot.users.has(args[m])) {
 					msg.channel.send(bot.users.get(args[m]).toString() + " is now blacklisted.");
