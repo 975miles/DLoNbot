@@ -58,19 +58,20 @@ bot.on("guildCreate", guild => {
 });
 
 bot.on("message", msg => {
-	for (var i in bal.config) {
-		for (var m in c) {
-			if (bal.config[i][m] == undefined) {
-				bal.config[i][m] = true;
-			}
-		}
-	}
+	if (bal.config.blacklisted.includes(msg.author.id)) return;
 	if (msg.author.bot) {
 		if (msg.channel.type != "text") {
 			return;
 		} else {
 			if (msg.channel.id != bal.config[msg.guild.id].petition.voteChannel) {
 				return;
+			}
+		}
+	}
+	for (var i in bal.config) {
+		for (var m in c) {
+			if (bal.config[i][m] == undefined) {
+				bal.config[i][m] = true;
 			}
 		}
 	}
@@ -286,13 +287,14 @@ bot.on("message", msg => {
 			console.log(err);
 		}
 	} else {
-		if (msg.author.id != "378877253754421250") {
+		if (msg.author.id != bot.user.id) {
 			msg.reply("This bot can only be used in servers!")
 		}
 	}
 });
 
 bot.on("messageReactionAdd", (messageReaction, user) => {
+	if (bal.config.blacklisted.includes(msg.author.id)) return;
 	try {
 		messageReaction.message.react(messageReaction.emoji.identifier);
 		console.log(user.username + " reacted on the message: [" + messageReaction.message.content + "] with " + messageReaction.emoji.name)
