@@ -20,7 +20,8 @@ module.exports = {
 			output = output + (i+1) + ": Balance of " + lsit[i][1] + ": **" + bal.currency[msg.guild.id].config.sym + lsit[i][0] + "**\n";
 		}
 		if (output.length > 1995) {
-			
+			fs.writeFile('all.txt', output);
+			msg.channel.send("Um... ok.", {file: 'all.txt'});
 		}	
 		else {
 			msg.channel.send(output);
