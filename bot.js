@@ -265,7 +265,7 @@ bot.on("message", msg => {
 						bal = c[module].commands[command].f(msg, bot, args, bal);
 
 					} else {
-						msg.channel.send("That\'s not a command...");
+						msg.channel.send("That\'s not a command...").then(msg => setTimeout(function(){msg.delete()}, 2500));
 					}
 				}
 			}
