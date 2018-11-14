@@ -115,7 +115,7 @@ bot.on("message", msg => {
 					var toSend = new Discord.RichEmbed({
 						title: msg.author.username + "#" + msg.author.discriminator + "<@" + msg.author.id + ">",
 						description: msg.content,
-						color: (msg.member.highestRole.color ? msg.member.highestRole.color : [0, 0, 0]),
+						color: (msg.member.highestRole.color ? msg.member.highestRole.color : 0),
 						url: "https://discord.gg/7eYSR9n",
 						thumbnail: {
 							url: msg.author.avatarURL
