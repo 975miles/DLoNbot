@@ -8,12 +8,16 @@ module.exports = {
 	"f":function (msg, bot, args, bal) {
 		var date = functions.date();
 		msg.channel.send("```" + 
-			date.day + "/" + 
-			date.monthNum + "/" +
+			zero(date.day) + "/" + 
+			zero(date.monthNum) + "/" +
 			date.year + " " +
-			date.hour + ":" +
-			("0" + date.minute).slice(-2) + "```");
+			zero(date.hour) + ":" +
+			zero(date.minute) + "```");
     msg.delete();
 		return bal;
 	}
+}
+
+function zero(n) {
+	return ("0" + n).slice(-2)
 }
