@@ -9,7 +9,7 @@ module.exports = {
 		var date = functions.date();
 		msg.channel.send("```" + 
 			date.day + "/" + 
-			date.monthNum + "/"
+			date.monthNum + "/" +
 			date.year + " " +
 			date.hour + ":" +
 			date.minute + "```");
