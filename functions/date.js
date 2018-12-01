@@ -2,7 +2,7 @@ var config = require("../config.json");
 
 module.exports = function() {
     var months = ["january","february","march","april","may","june","july","august","september","october","november","december"];
-    var calibration = (1036800000*504)+(86400000*6);
+    var calibration = (1036800000*504)+(86400000*7);
     var date = {};
     var d = new Date();
     var t = d.getTime()+calibration;
