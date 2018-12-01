@@ -13,7 +13,7 @@ module.exports = {
 				msg.channel.send("Wat?")
 			}
 			else {
-				bal.nations[msg.author.id].name = args[0];
+				bal.nations[msg.author.id].name = args.join(" ");
 				msg.channel.send(bal.nations[msg.author.id].name + "\n\nGot it.");
 			}
 		}
