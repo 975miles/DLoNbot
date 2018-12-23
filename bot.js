@@ -210,7 +210,6 @@ bot.on("message", async msg => {
 			} else if (msg.channel.id == bal.config[msg.guild.id].petition.petitionChannel && bal.config[msg.guild.id].petitions) {
 				let toSend = new Discord.RichEmbed()
 					.setAuthor(msg.author.username + msg.author.tag, msg.author.avatarURL)
-					.setTitle("New Petition!")
 					.setDescription(msg.content)
 					.setTimestamp();
 				msg.delete();
