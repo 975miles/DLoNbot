@@ -209,7 +209,7 @@ bot.on("message", async msg => {
 			//Handle petitions
 			} else if (msg.channel.id == bal.config[msg.guild.id].petition.petitionChannel && bal.config[msg.guild.id].petitions) {
 				let toSend = new Discord.RichEmbed()
-					.setAuthor(msg.author.username + msg.author.tag, msg.author.avatarURL)
+					.setAuthor(msg.author.tag, msg.author.avatarURL)
 					.setDescription(msg.content)
 					.setTimestamp();
 				msg.delete();
