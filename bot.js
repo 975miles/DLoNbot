@@ -47,7 +47,7 @@ var newConfig = {
 };
 
 //On ready, make us o n l i n e and fetch all the messages for petition & vote channels. Also, make sure all the configs are not undefined.
-bot.on('ready', () => {
+bot.on('ready', async () => {
 	bot.user.setStatus("online");
 	bot.user.setActivity("/help");
 	console.log("Bot up.");
@@ -215,7 +215,7 @@ bot.on("message", async msg => {
 					.setTimestamp();
 				msg.delete();
 				let newPetition = await msg.channel.send(toSend);
-				petitionReactions.forEach(function (element) {
+				petitionReactions.forEach(async function (element) {
 					await newPetition.react(element);
 				});
 			//Handle votes
