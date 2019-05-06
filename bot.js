@@ -73,16 +73,6 @@ bot.on("guildCreate", guild => {
 bot.on("message", async msg => {
 	//If the person is blacklisted then game end them
 	if (bal.config.blacklisted.includes(msg.author.id)) return;
-	//We only want to handle our own messages if they're in a vote channel
-	if (msg.author.bot) {
-		if (msg.channel.type != "text") {
-			return;
-		} else {
-			if (msg.channel.id != bal.config[msg.guild.id].petition.voteChannel) {
-				return;
-			}
-		}
-	}
 
 
 	//By default, enables all modules
