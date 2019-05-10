@@ -13,7 +13,6 @@ module.exports = {
 			(date.year-103) + " " +
 			zero(date.hour) + ":" +
 			zero(date.minute) + "```");
-    msg.delete();
 		return bal;
 	}
 }
