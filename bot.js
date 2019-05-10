@@ -206,6 +206,11 @@ bot.on("message", async msg => {
 					}
 				}
 			//Handle petitions
+			} else if (msg.channel.id == bal.config[msg.guild.id].petition.petitionChannel && bal.config[msg.guild.id].petitions) {
+				petitionReactions.forEach(async function (element) {
+					await msg.react(element);
+				});
+			//Handle votes
 			} else if (msg.channel.id == bal.config[msg.guild.id].petition.voteChannel && bal.config[msg.guild.id].petitions) {
 				if (msg.author.id != bot.user.id) additionalVoteReactions = [];
 				voteReactions.forEach(reaction => msg.react(reaction));
