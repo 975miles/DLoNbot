@@ -2,7 +2,7 @@ var requireDir = require('require-dir');
 var functions = requireDir("../../../functions", {recurse: true});
 
 module.exports = {
-	"d":"Tells you the DNP time. Format: D/M/Y H:M",
+	"d":"Tells you the DN time. Format: D/M/Y H:M",
 	"a":[],
 	"g":"e",
 	"f":function (msg, bot, args, bal) {
