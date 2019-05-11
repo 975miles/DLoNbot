@@ -10,7 +10,7 @@ module.exports = {
 		msg.channel.send("```" + 
 			zero(date.day) + "/" + 
 			zero(date.monthNum) + "/" +
-			(date.year-103) + " " +
+			(date.year-104) + " " +
 			zero(date.hour) + ":" +
 			zero(date.minute) + "```");
 		return bal;
