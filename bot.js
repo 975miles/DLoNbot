@@ -98,6 +98,7 @@ bot.on("message", async msg => {
 		if (msg.author.id != bot.user.id) {
 			msg.reply("This bot can only be used in servers!")
 		}
+		return;
 	}
 
 	//We wouldn't want to crash, would we?
