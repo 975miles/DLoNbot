@@ -331,7 +331,7 @@ bot.on("message", async msg => {
 			}
 		}
 		//Save the modified data.
-		fs.writeFile('bal.json', JSON.stringify(bal), null, 4);
+		fs.writeFileSync('bal.json', JSON.stringify(bal), null, 4);
 	} catch (error) {
 		msg.channel.send("Something happened!", new Discord.RichEmbed({
 			title: "Something happened!",
