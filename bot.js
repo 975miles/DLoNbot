@@ -346,7 +346,7 @@ bot.on("message", async msg => {
 				text: "Something happened! - " + error.toString()
 			}
 		}));
-		console.log(err);
+		console.log(error);
 	}
 });
 
